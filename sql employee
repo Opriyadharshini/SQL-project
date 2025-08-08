@@ -1,0 +1,61 @@
+DROP TABLE IF EXISTS CUSTOMER;
+DROP TABLE IF EXISTS ORDERS;
+
+CREATE TABLE CUSTOMER (
+  c_id int,
+  c_name varchar(15),
+  c_city varchar(10)
+);
+
+CREATE TABLE ORDERS (
+  o_id int,
+  product varchar(15),
+  quality varchar(10),
+  orderdate date
+);
+CREATE TABLE EMPLOYEE(
+emp_id int,
+e_name varchar(15),
+dept varchar(30),
+salary DECIMAL(10,2),
+salarry int,
+age int,
+gender varchar(10)
+
+
+);
+
+INSERT INTO CUSTOMER(c_id,c_name,c_city) VALUES (1,'Radhakrish', 'Chennai');
+INSERT INTO CUSTOMER(c_id,c_name,c_city) VALUES (2,'Govinda', 'Cuddalore');
+INSERT INTO CUSTOMER(c_id,c_name,c_city) VALUES (3,'Madhava', 'Vellore');
+
+INSERT INTO ORDERS(o_id,product,quality,orderdate) VALUES (1234587,'Olive oil', 'best','8/4/2025');
+INSERT INTO ORDERS(o_id,product,quality,orderdate) VALUES (12345906,'Bread', 'Average','6/4/2025');
+INSERT INTO ORDERS(o_id,product,quality,orderdate) VALUES (123457867,'Jam', 'best','5/4/2025');
+
+INSERT INTO EMPLOYEE(emp_id,e_name,dept,salary,age,gender) VALUES (1,'Ram','sales','602378.89','23','Male');
+INSERT INTO EMPLOYEE(emp_id,e_name,dept,salary,age,gender) VALUES (2,'Jitha','IT','8023784.56','24','Female');
+INSERT INTO EMPLOYEE(emp_id,e_name,dept,salary,age,gender) VALUES (3,'kirthika','marketing','23745.99','22','Female');
+INSERT INTO EMPLOYEE(emp_id,e_name,dept,salary,age,gender) VALUES (8,'mangi','HR','23456.89','26','Female');
+INSERT INTO EMPLOYEE(emp_id,e_name,dept,salary,age,gender) VALUES (4,'Ram','sales','602378.89','23','Male');
+INSERT INTO EMPLOYEE(emp_id,e_name,dept,salary,age,gender) VALUES (5,'Jaanu','IT','8023784.56','24','Female');
+INSERT INTO EMPLOYEE(emp_id,e_name,dept,salary,age,gender) VALUES (6,'kirthi','marketing','23745.99','22','Female');
+INSERT INTO EMPLOYEE(emp_id,e_name,dept,salary,age,gender) VALUES (7,'mandarin','HR','23456.89','26','Female');
+
+
+SELECT c_id,c_name FROM CUSTOMER
+
+WHERE c_id=2;
+SELECT * FROM ORDERS
+WHERE o_id=12345906;
+SELECT * FROM EMPLOYEE;
+SELECT e_name,salary FROM EMPLOYEE WHERE salary>60000;
+SELECT e_name,salary FROM EMPLOYEE ORDER BY salary;
+SELECT e_name,salary FROM EMPLOYEE ORDER BY salary DESC;
+SELECT e_name,salary FROM EMPLOYEE ORDER BY e_name;
+SELECT dept,SUM(salary) AS TOTALSALARY
+FROM EMPLOYEE
+GROUP BY dept
+SELECT dept,COUNT(dept) AS number
+FROM EMPLOYEE
+GROUP BY dept
