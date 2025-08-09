@@ -1,0 +1,73 @@
+-- SQL JOINS
+-- create a database joins
+-- use joins
+
+-- Create Employee table
+CREATE TABLE employee (
+    e_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    department_id INT
+);
+
+-- Insert data into Employee table
+INSERT INTO employee (e_id, first_name, last_name, department_id) VALUES
+(1, 'Amit', 'Gupta', 1),
+(2, 'Priya', 'Sharma', 2),
+(3, 'Rahul', 'Singh', 3),
+(4, 'Anjali', 'Patel', 3),
+(5, 'Arjun', 'Kumar', 1),
+(6, 'Aarav', 'Deshpande', 2),
+(7, 'Vivek', 'Malhotra', 3),
+(8, 'Riya', 'Nair', NULL),
+(9, 'Suresh', 'Menon', NULL);
+-- Create Department table
+CREATE TABLE department (
+    department_id INT PRIMARY KEY,
+    name VARCHAR(50)
+);
+
+-- Insert data into Department table
+INSERT INTO department (department_id, name) VALUES
+(1, 'HR'),
+(2, 'Marketing'),
+(3, 'Finance'),
+(4, 'IT'),
+(5, 'Operations'),
+(6, 'Logistics');
+
+-- INNER JOIN
+-- INNER JOIN between employee and department
+SELECT *
+FROM employee AS e
+INNER JOIN department AS d
+    ON e.department_id = d.department_id;
+
+SELECT *
+FROM employee AS e
+NATURAL JOIN department AS d;
+
+
+
+SELECT *
+FROM employee AS e
+LEFT JOIN department AS d
+    ON e.department_id = d.department_id;
+    
+    
+    
+    
+
+SELECT *
+FROM employee AS e
+RIGHT JOIN department AS d
+    ON e.department_id = d.department_id;
+
+
+
+
+SELECT *
+FROM employee AS e
+CROSS JOIN department AS d
+    ON e.department_id = d.department_id;
+
