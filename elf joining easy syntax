@@ -1,0 +1,25 @@
+CREATE TABLE employee_manager (
+    eid INT PRIMARY KEY,
+    name VARCHAR(50),
+    mid INT
+);
+
+-- Insert sample data
+INSERT INTO employee_manager (eid, name, mid) VALUES
+(1, 'Amit', 4),
+(2, 'Bhavana', 4),
+(3, 'Chetan', 5),
+(4, 'Farhan', NULL),
+(5, 'Dinesh', NULL),
+(6, 'Divya', 5);
+
+
+
+SELECT 
+    T1.name AS Employee, 
+    T2.name AS Manager
+FROM employee_manager AS T1
+JOIN employee_manager AS T2
+    ON T1.mid = T2.eid;
+
+  
