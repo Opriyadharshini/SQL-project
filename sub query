@@ -1,0 +1,61 @@
+--subquery--
+DROP TABLE IF EXISTS EMPLOYEE;
+
+CREATE TABLE employee (
+  emp_id INT PRIMARY KEY, 
+  name VARCHAR(50),
+  dept_name VARCHAR(30),
+  salary DECIMAL(10,2),
+  age INT,
+  gender VARCHAR(10)
+);
+
+INSERT INTO employee VALUES (1, 'Ravi', 'IT', 50000, 25, 'Male');
+INSERT INTO employee VALUES (2, 'Priya', 'HR', 350000, 25, 'Female');
+INSERT INTO employee VALUES (3, 'Karan', 'IT', 450000, 25, 'Male');
+INSERT INTO employee VALUES (4, 'Anjali', 'Finance', 550000, 25, 'Female');
+INSERT INTO employee VALUES (5, 'Manish', 'IT', 650000, 25, 'Male');
+INSERT INTO employee VALUES (6, 'Sneha', 'HR', 750000, 25, 'Female');
+INSERT INTO employee VALUES (7, 'Arun', 'Finance', 850000, 25, 'Male');
+INSERT INTO employee VALUES (8, 'Asha', 'IT', 950000, 25, 'Female');
+INSERT INTO employee VALUES (9, 'Raj', 'HR', 1050000, 25, 'Male');
+
+
+CREATE TABLE department_info (
+    dept_id INT PRIMARY KEY,
+    dept_name VARCHAR(30),(1, 'IT', 'Mumbai'),
+
+    location VARCHAR(30)
+);
+
+INSERT INTO department_info VALUES
+(2, 'HR', 'Delhi'),
+(3, 'Finance', 'Chennai'),
+(4, 'Marketing', 'Bangalore');
+
+
+SELECT DEPT_NAME
+FROM DEPARTMENT_INFO
+WHERE LOCATION ='DELHI';
+
+SELECT NAME,DEPT_NAME FROM employee
+WHERE DEPT_NAME=(SELECT DEPT_NAME
+FROM DEPARTMENT_INFO
+WHERE LOCATION ='DELHI');
+
+SELECT DEPT_NAME
+FROM DEPARTMENT_INFO
+WHERE LOCATION ='CHENNAI' OR 'MUMBAI';
+
+SELECT NAME,DEPT_NAME FROM employee
+WHERE DEPT_NAME IN (SELECT DEPT_NAME
+FROM DEPARTMENT_INFO
+WHERE LOCATION ='CHENNAI' OR  LOCATION ='MUMBAI');
+
+SELECT name,DEPT_NAME,SALARY
+FROM employee E
+WHERE  salary >(SELECT AVG(SALARY)  FROM EMPLOYEE WHERE DEPT_NAME=E.DEPT_NAME) ;
+
+
+
+SELECT*FROM EMPLOYEE;
