@@ -1,0 +1,48 @@
+CREATE TABLE courses(
+course_id INT PRIMARY KEY,
+course_name VARCHAR(50),
+depatment VARCHAR(50),
+credits INT
+);
+
+
+
+INSERT INTO Courses VALUES
+(101, 'Mathematics', 'Science', 4),
+(102, 'Physics', 'Science', 3),
+(103, 'History', 'Arts', 2),
+(104, 'Computer Science', 'Technology', 5),
+(105, 'Chemistry', 'Science', 3);
+
+INSERT INTO Students VALUES
+(1, 'Alice', 'Johnson', 101),
+(2, 'Bob', 'Smith', 102),
+(3, 'Charlie', 'Brown', 103),
+(4, 'David', 'Williams', 101),
+(5, 'Eve', 'Taylor', NULL),
+(6, 'Frank', 'Moore', 104);
+
+SELECT S.FIRST_NAME,C.COURSE_NAME
+FROM STUDENTS S
+JOIN COURSES c
+ON S.COURSE_ID = C.COURSE_ID;
+
+SELECT C.DEPATMENT,C.COURSE_NAME, S.FIRST_NAME
+FROM STUDENTS S
+JOIN COURSES c
+ON S.COURSE_ID = C.COURSE_ID;
+
+SELECT CONCAT( S.FIRST_NAME, S.LAST_NAME) AS NAME ,C.COURSE_NAME
+FROM STUDENTS S
+JOIN COURSES c
+ON S.COURSE_ID = C.COURSE_ID;
+
+SELECT COURSE_ID
+FROM STUDENTS S
+WHERE COURSE_ID > 3;
+
+SELECT S.FIRST_NAME
+FROM STUDENTS S
+JOIN COURSES c
+ON S.COURSE_ID = C.COURSE_ID
+WHERE DEPATMENT = 'SCIENCE';
