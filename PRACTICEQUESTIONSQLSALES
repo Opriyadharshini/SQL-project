@@ -1,0 +1,50 @@
+CREATE TABLE Sales (
+    SaleID INT PRIMARY KEY,
+    Salesperson VARCHAR(50),
+    Region VARCHAR(50),
+    Product VARCHAR(50),
+    Quantity INT,
+    SaleAmount DECIMAL(10,2)
+);
+INSERT INTO Sales (SaleID, Salesperson, Region, Product, Quantity, SaleAmount) VALUES
+(1, 'Alice', 'North', 'Laptop', 1, 1000.00),
+(2, 'Bob', 'South', 'Mouse', 3, 75.00),
+(3, 'Alice', 'North', 'Monitor', 2, 300.00),
+(4, 'Charlie', 'East', 'Keyboard', 1, 50.00),
+(5, 'Bob', 'South', 'Monitor', 1, 150.00),
+(6, 'Alice', 'North', 'Mouse', 2, 50.00),
+(7, 'Charlie', 'East', 'Laptop', 2, 2000.00),
+(8, 'David', 'West', 'Laptop', 1, 1100.00),
+(9, 'David', 'West', 'Mouse', 4, 100.00),
+(10, 'Eve', 'South', 'Monitor', 3, 450.00),
+(11, 'Eve', 'South', 'Keyboard', 2, 100.00),
+(12, 'Eve', 'South', 'Mouse', 1, 25.00),
+(13, 'Alice', 'North', 'Keyboard', 1, 60.00),
+(14, 'Bob', 'South', 'Laptop', 1, 1200.00),
+(15, 'Charlie', 'East', 'Mouse', 2, 50.00);
+
+SELECT SALESPERSON, QUANTITY FROM SALES
+SELECT SALESPERSON, SUM(QUANTITY) AS TOTALQUANTITY
+FROM SALES
+GROUP BY SALESPERSON
+HAVING SUM(QUANTITY)>5;
+SELECT PRODUCT,SALESPERSON FROM SALES
+
+SELECT REGION FROM SALES
+WHERE SALEAMOUNT>1000;
+
+SELECT SALESPERSON ,SUM(QUANTITY) AS TOTALTRANSACTIONS
+FROM SALES
+GROUP BY SALESPERSON
+HAVING SUM(QUANTITY)>2
+
+
+
+
+
+
+
+
+
+
+
