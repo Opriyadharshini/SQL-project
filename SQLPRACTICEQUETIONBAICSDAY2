@@ -1,0 +1,97 @@
+CREATE TABLE reaction (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_name VARCHAR(100),
+    reaction_type VARCHAR(20),
+    post_id INT,
+    created_at DATETIME,
+    location VARCHAR(100),
+    mood_level INT,
+    comment TEXT   -- TEXT is allowed in MySQL, VARCHAR(MAX) is SQL Server only
+);
+
+INSERT INTO reaction (user_name, reaction_type, post_id, created_at, location, mood_level, comment) VALUES
+('Alice', 'like', 101, '2025-08-07 10:15:00', 'New York', 8, 'Nice post!'),
+('Bob', 'love', 102, '2025-08-06 14:20:00', 'Los Angeles', 9, 'Awesome!'),
+('Charlie', 'angry', 101, '2025-08-05 09:10:00', 'Chicago', 3, NULL),
+('Diana', 'wow', 103, '2025-08-07 08:30:00', 'Miami', 7, 'Interesting point.'),
+('Ethan', 'sad', 104, '2025-08-04 16:45:00', 'Dallas', 2, NULL),
+('Fiona', 'love', 102, '2025-08-07 12:00:00', 'Boston', 6, 'Well said.'),
+('George', 'like', 105, '2025-08-03 11:25:00', 'Seattle', 5, NULL),
+('Hannah', 'like', 106, '2025-08-07 15:50:00', 'Denver', 9, 'Completely agree!'),
+('Ian', 'angry', 107, '2025-08-06 13:15:00', 'Phoenix', 4, 'Not okay with this.'),
+('Jane', 'sad', 108, '2025-08-02 18:40:00', 'Atlanta', 1, NULL),
+('Sam', 'like', 101, '2025-08-07 10:50:00', 'New York', 8, NULL),
+('Anita', 'wow', 109, '2025-08-01 20:10:00', 'Houston', 7, NULL),
+('Brian', 'love', 110, '2025-08-07 09:05:00', 'San Francisco', 10, 'Fantastic work!'),
+('Catherine', 'like', 111, '2025-08-07 08:55:00', 'New York', 6, NULL),
+('Daniel', 'angry', 112, '2025-08-05 17:35:00', 'Chicago', 2, NULL);
+-- 1. All rows
+SELECT * FROM reaction;
+
+-- 2. Reaction type of users whose names start with 'A'
+SELECT reaction_type FROM reaction WHERE user_name LIKE 'A%';
+
+-- 3. Aliasing
+SELECT user_name AS REACTOR, reaction_type AS type
+FROM reaction;
+
+-- 4. Mood level between 4 and 8
+SELECT reaction_type FROM reaction WHERE mood_level BETWEEN 4 AND 8;
+
+-- 5. LIKE with mood_level > 7
+SELECT reaction_type FROM reaction
+WHERE reaction_type = 'like' AND mood_level > 7;
+
+-- 6. LOVE or ANGRY
+SELECT reaction_type FROM reaction 
+WHERE reaction_type IN ('love','angry');
+
+-- 7. Not SAD
+SELECT reaction_type FROM reaction 
+WHERE reaction_type <> 'sad';
+
+-- 8. LIKE, WOW, LOVE
+SELECT * FROM reaction 
+WHERE reaction_type IN ('like','wow','love');
+
+-- 9. NULL comments
+SELECT * FROM reaction WHERE comment IS NULL;
+
+-- 10. NOT NULL comments
+SELECT * FROM reaction WHERE comment IS NOT NULL;
+
+-- 11. Uppercase usernames
+SELECT UPPER(user_name) FROM reaction;
+
+-- 12. Lowercase reaction types
+SELECT LOWER(reaction_type) FROM reaction;
+
+-- 13. Usernames longer than 6 chars
+SELECT user_name FROM reaction WHERE LENGTH(user_name) > 6;
+
+-- 14. Just lengths
+SELECT LENGTH(user_name) FROM reaction;
+
+-- 15. First 5 usernames (MySQL uses LIMIT, not TOP)
+SELECT user_name FROM reaction LIMIT 5;
+
+-- 16. Latest 5 usernames
+SELECT user_name 
+FROM reaction
+LIMIT 5;
+
+SELECT ROUND(mood_level,5) FROM REACTION ;
+
+
+SELECT SUBSTRING(user_name,1,2) FROM REACTION;
+
+SELECT SUBSTRING(UPPER(USER_NAME),1,2) FROM REACTION;
+
+
+SELECT COUNT(reaction_type) AS TOTAL_COUNT_REACTIONS
+FROM reaction
+WHERE comment IS NULL;
+
+
+--SELECT *FROM reaction
+-----WHERE current_time(created_at)!='10:00:00';
