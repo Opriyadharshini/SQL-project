@@ -1,0 +1,64 @@
+CREATE TABLE reaction (
+    id INT PRIMARY KEY IDENTITY(1,1),
+    user_name VARCHAR(100),
+    reaction_type VARCHAR(20),
+    post_id INT,
+    created_at DATETIME,
+    location VARCHAR(100),
+    mood_level INT,
+    comment VARCHAR(MAX)   -- TEXT is deprecated in SQL Server
+);
+INSERT INTO reaction (user_name, reaction_type, post_id, created_at, location, mood_level, comment) VALUES
+('Alice', 'like', 101, '2025-08-07 10:15:00', 'New York', 8, 'Nice post!'),
+('Bob', 'love', 102, '2025-08-06 14:20:00', 'Los Angeles', 9, 'Awesome!'),
+('Charlie', 'angry', 101, '2025-08-05 09:10:00', 'Chicago', 3, NULL),
+('Diana', 'wow', 103, '2025-08-07 08:30:00', 'Miami', 7, 'Interesting point.'),
+('Ethan', 'sad', 104, '2025-08-04 16:45:00', 'Dallas', 2, NULL),
+('Fiona', 'love', 102, '2025-08-07 12:00:00', 'Boston', 6, 'Well said.'),
+('George', 'like', 105, '2025-08-03 11:25:00', 'Seattle', 5, NULL),
+('Hannah', 'like', 106, '2025-08-07 15:50:00', 'Denver', 9, 'Completely agree!'),
+('Ian', 'angry', 107, '2025-08-06 13:15:00', 'Phoenix', 4, 'Not okay with this.'),
+('Jane', 'sad', 108, '2025-08-02 18:40:00', 'Atlanta', 1, NULL),
+('Sam', 'like', 101, '2025-08-07 10:50:00', 'New York', 8, NULL),
+('Anita', 'wow', 109, '2025-08-01 20:10:00', 'Houston', 7, NULL),
+('Brian', 'love', 110, '2025-08-07 09:05:00', 'San Francisco', 10, 'Fantastic work!'),
+('Catherine', 'like', 111, '2025-08-07 08:55:00', 'New York', 6, NULL),
+('Daniel', 'angry', 112, '2025-08-05 17:35:00', 'Chicago', 2, NULL);
+SELECT * FROM REACTION
+SELECT reaction_type FROM REACTION WHERE user_name LIKE 'A%';
+
+SELECT USER_NAME AS REACTOR, reaction_type AS type
+FROM REACTION
+
+SELECT reaction_type FROM REACTION WHERE mood_level BETWEEN 4 AND 8;
+
+SELECT reaction_type FROM reaction
+WHERE reaction_type='LIKE' AND mood_level>7;
+
+SELECT REACTION_TYPE FROM REACTION 
+WHERE REACTION_TYPE ='LOVE' OR REACTION_TYPE='ANGRY';
+
+SELECT REACTION_TYPE FROM REACTION 
+WHERE REACTION_TYPE!='SAD';
+
+SELECT * FROM REACTION 
+WHERE REACTION_TYPE='LIKE' OR REACTION_TYPE= 'WOW' OR REACTION_TYPE= 'LOVE';
+
+SELECT * FROM REACTION
+WHERE comment IS NULL;
+
+SELECT * FROM REACTION
+WHERE COMMENT IS NOT NULL;
+
+SELECT UPPER(USER_NAME) FROM REACTION
+
+SELECT LOWER(REACTION_TYPE) FROM REACTION
+
+SELECT USER_NAME FROM REACTION WHERE LEN(USER_NAME)>6;
+SELECT LEN(USER_NAME) FROM REACTION
+
+SELECT * FROM REACTION WHERE NOW(created_at);
+
+
+
+
